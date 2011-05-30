@@ -1,6 +1,7 @@
 package com.codejuice.amoeba.game;
 
 import com.codejuice.amoeba.entity.Amoeba;
+import com.codejuice.amoeba.entity.Cell;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -15,8 +16,10 @@ public class Game extends Application {
         Scene scene = new Scene(new Group(), 400, 200, Color.BLACK);
         stage.setScene(scene);
 
-        ((Group) scene.getRoot()).getChildren().add(new Amoeba(50,100).body);
-        ((Group) scene.getRoot()).getChildren().add(new Amoeba(350,100).body);
+        ((Group) scene.getRoot()).getChildren().add(new Amoeba(50, 100).body);
+        ((Group) scene.getRoot()).getChildren().add(new Amoeba(350, 100).body);
+
+        ((Group) scene.getRoot()).getChildren().add(new Cell(200, 100).body);
 
         stage.setVisible(true);
 
