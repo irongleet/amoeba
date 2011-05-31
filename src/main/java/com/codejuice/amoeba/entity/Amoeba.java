@@ -1,6 +1,8 @@
 package com.codejuice.amoeba.entity;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
@@ -12,15 +14,28 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
+import javafx.scene.text.Text;
 
 public class Amoeba {
 
+    public final Group _body;
     public final Circle body;
+
+    public final ObservableList<Cell> cells;
 
     private static final Color AMOEBA_COLOR = Color.web("white", 0.7);
     private static final Color AMOEBA_SELECTED_COLOR = Color.web("blue", 0.7);
 
-    public Amoeba(float x, float y) {
+    public Amoeba(float x, float y, int cells) {
+
+        _body = new Group();
+
+        this.cells = FXCollections.observableArrayList();
+
+        for (int i = 0; i < cells; i++) {
+            this.cells.add(new Cell(0, 0));
+        }
+
         body = new Circle(20, Color.web("white", 0.05f));
 
         body.setStrokeType(StrokeType.OUTSIDE);
@@ -35,6 +50,14 @@ public class Amoeba {
         body.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEntered);
         body.addEventHandler(MouseEvent.MOUSE_EXITED, mouseExited);
 
+        Text text = new Text(String.valueOf(cells));
+        text.setStroke(Color.web("white", 0.05f));
+        text.setLayoutX(x);
+        text.setLayoutY(y);
+
+
+        _body.getChildren().add(body);
+        _body.getChildren().add(text);
 
     }
 

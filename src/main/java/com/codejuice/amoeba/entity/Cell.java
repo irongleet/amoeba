@@ -9,6 +9,10 @@ public class Cell {
 
     public final Circle body;
 
+    public Cell() {
+        this(0, 0);
+    }
+
     public Cell(float x, float y) {
 
         body = new Circle(2);
@@ -20,4 +24,9 @@ public class Cell {
         body.setCenterY(y);
 
     }
+
+    public void migrate(Amoeba target) {
+
+    }
+
 }
